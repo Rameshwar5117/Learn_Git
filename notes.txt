@@ -97,3 +97,46 @@ git checkout master      # allowed
   1. आप changes commit न कर दो,
   2. या stash न कर दो,
   3. या discard न कर दो।
+
+-------------------------------- 2. stash ---------------------------------------------
+# 1. काम किया (file update की)
+echo "update" >> notes.txt
+
+# 2. Changes को stash करो (सिर्फ tracked files)
+git stash
+
+# 3. Untracked files भी stash करनी हों
+git stash -u
+
+# 4. Untracked + Ignored files भी stash करनी हों
+git stash -a
+
+# 5. Custom message के साथ stash करो
+git stash push -m "WIP: notes.txt update"
+
+# 6. Stash list देखो
+git stash list
+
+# 7. किसी stash का detail देखो (overview)
+git stash show stash@{0}
+
+# 8. किसी stash का पूरा diff देखो
+git stash show -p stash@{0}
+
+# 9. Latest stash वापस लाओ (stash list में रहेगा)
+git stash apply
+
+# 10. Specific stash वापस लाओ
+git stash apply stash@{2}
+
+# 11. Latest stash वापस लाओ + stash हटाओ
+git stash pop
+
+# 12. Specific stash वापस लाओ + stash हटाओ
+git stash pop stash@{1}
+
+# 13. किसी एक stash को हटाओ
+git stash drop stash@{0}
+
+# 14. सारे stashes clear कर दो
+git stash clear
