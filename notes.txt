@@ -153,3 +153,62 @@ Note:-
 जब आप git stash चलाते हो, Git आपके current working directory changes को एक special जगह (.git/refs/stash) में save कर देता है।
 यह stash किसी branch से permanent जुड़ा नहीं होता।
 इसलिए आप किसी भी branch में जाकर उसे apply या pop कर सकते हो।
+
+
+================================= 3. Basic ✅ conflict और ❌ no conflict ==============================================
+# 📒 Git Merge Notes (With & Without Conflict)
+## 🔹 Case 1: Merge **without conflict**
+
+### Flow:
+1. उस branch पर जाओ जिसमें merge करना है
+   git checkout main
+
+2. Merge करो
+   git merge feature
+
+   👉 अगर changes अलग-अलग जगह हैं, तो Git अपने आप merge कर देगा।
+   * कभी **fast-forward merge** होगा (pointer सिर्फ आगे बढ़ेगा)।
+   * कभी **auto merge commit** होगा (Git खुद commit बना देगा)।
+
+3. Remote पर push करो
+   git push origin main
+
+✅ Done (कोई manual commit करने की ज़रूरत नहीं)।
+
+## 🔹 Case 2: Merge **with conflict**
+### Flow:
+1. उस branch पर जाओ जिसमें merge करना है
+   git checkout main
+
+2. Merge करो
+   git merge feature
+
+   👉 Git error देगा:
+   CONFLICT (content): Merge conflict in notes.txt
+   Automatic merge failed; fix conflicts and then commit the result.
+
+3. Conflict वाली files open करो (markers होंगे):
+   <<<<<<< HEAD
+   main branch ka content
+   =======
+   feature branch ka content
+   >>>>>>> feature
+
+4. File को manually resolve करो और save कर दो।
+
+5. Resolve mark करो
+
+   git add notes.txt
+
+6. Merge commit complete करो
+   git commit
+
+7. Remote पर push करो
+   git push origin main
+✅ Done (अब GitHub पर भी merge दिखेगा)।
+
+# 🔹 Golden Rule (Summary)
+| Condition         | Steps                                                                |
+| ----------------- | -------------------------------------------------------------------- |
+| **No Conflict**   | `checkout` → `merge` → `push`                                        |
+| **With Conflict** | `checkout` → `merge` → **resolve files** → `add` → `commit` → `push` |
