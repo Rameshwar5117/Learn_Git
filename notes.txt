@@ -61,6 +61,9 @@ git checkout main
 # 7. feature1 branch को main में merge करना
 git merge feature1
 
+# 7.1 Merge result को GitHub पर push करना (important)
+git push origin main
+
 # 8. Branch delete करना (local)
 git branch -d feature1
 
