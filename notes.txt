@@ -97,3 +97,17 @@ git checkout master      # allowed
   1. आप changes commit न कर दो,
   2. या stash न कर दो,
   3. या discard न कर दो।
+
+
+IMP for stash
+Note:- 
+1. git stash clear क्या करता है?
+ये आपके सारे stashes delete कर देता है।
+मतलब जो भी changes आपने stash करके रखे थे, वो अब Git में कहीं save नहीं रहेंगे।
+अगर आपने उन्हें पहले apply/pop नहीं किया है → तो वो changes हमेशा के लिए गायब हो जाएँगे।
+
+2. किसी भी branch में जाकर उसे apply या pop कर सकते हो।
+कैसे काम करता है Stash?
+जब आप git stash चलाते हो, Git आपके current working directory changes को एक special जगह (.git/refs/stash) में save कर देता है।
+यह stash किसी branch से permanent जुड़ा नहीं होता।
+इसलिए आप किसी भी branch में जाकर उसे apply या pop कर सकते हो।
