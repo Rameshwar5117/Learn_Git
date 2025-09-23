@@ -212,3 +212,35 @@ Note:-
 | ----------------- | -------------------------------------------------------------------- |
 | **No Conflict**   | `checkout` → `merge` → `push`                                        |
 | **With Conflict** | `checkout` → `merge` → **resolve files** → `add` → `commit` → `push` |
+
+
+📒 Git Merge with Multiple Conflicts (Complete Flow)
+# 1. उस branch पर जाओ जिसमें merge करना है
+git checkout main
+
+# 2. दूसरी branch को merge करने की कोशिश करो
+git merge feature
+
+# (अगर multiple files में conflict आया तो Git बताएगा:
+# CONFLICT (content): Merge conflict in file1.txt
+# CONFLICT (content): Merge conflict in file2.txt
+# Automatic merge failed; fix conflicts and then commit the result.)
+
+# 3. हर conflict वाली file खोलो, markers resolve करो और save करो
+# <<<<<<< HEAD
+# main branch ka code
+# =======
+# feature branch ka code
+# >>>>>>> feature
+
+# 4. Resolve की हुई files को stage करो
+git add file1.txt
+git add file2.txt
+# या shortcut:
+git add .
+
+# 5. Merge commit पूरा करो
+git commit
+
+# 6. Remote repo (GitHub) पर merge result push करो
+git push origin main
