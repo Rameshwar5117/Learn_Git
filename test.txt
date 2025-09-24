@@ -1,2 +1,0 @@
-this is text file
-This file used to learn git
