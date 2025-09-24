@@ -321,3 +321,7 @@ git reset --hard HEAD~1
 | `--soft`  | हाँ          | Safe (staged) | Safe              |
 | `--mixed` | हाँ          | Clear         | Safe              |
 | `--hard`  | हाँ          | Clear         | Clear (delete)    |
+
+* **--soft** → Commit हटेगा, changes **staging area + working directory** में रहेंगे।
+* **--mixed (default)** → Commit हटेगा, changes **staging से हट जाएंगे, working directory में रहेंगे।**
+* **--hard** → Commit हटेगा, changes **staging और working directory दोनों से हट जाएंगे।**
