@@ -369,3 +369,113 @@ git reset --hard HEAD~1
 * **Reset** commit delete करता है → history बदलेगी ❌
 * **Revert** commit को delete नहीं करता → नया commit जोड़ता है ✅
 * Safe option है जब आप team में काम कर रहे हों।
+
+============================== 6. Checkout ================================
+Git में आप किसी भी पुराने commit से नया branch बनाकर उस पर आगे काम कर सकते हो।
+
+# 🔹 तरीका 1: पहले Commit Checkout, फिर Branch बनाना
+### 1. Commit history देखो
+git log --oneline
+
+👉 Example output:
+a1b2c3d (HEAD -> master) commit10
+f6g7h8i commit9
+x9y8z7w commit8
+172804c commit1
+
+### 2. पुराने commit पर जाओ
+git checkout 172804c
+
+➡ Detached HEAD state में चले गए।
+### 3. नया branch बनाओ और switch करो
+git checkout -b feature-from-commit1
+
+### 4. Verify करो
+git branch
+
+👉 Output:
+* feature-from-commit1
+  master
+
+
+# 🔹 तरीका 2: एक ही Command में Commit से Branch बनाना
+### 1. Commit history देखो
+git log --oneline
+
+👉 Example output:
+a1b2c3d (HEAD -> master) commit10
+f6g7h8i commit9
+x9y8z7w commit8
+172804c commit1
+
+### 2. Direct नया branch commit से बनाओ
+git checkout -b feature-from-commit1 172804c
+
+### 3. Verify करो
+git branch
+👉 Output:
+* feature-from-commit1
+  master
+
+✅ अब दोनों तरीकों से आप **commit1 से नया branch बना सकते हो और वहाँ से आगे काम कर सकते हो**।
+
+
+
+## 🔹 What is Checkout?
+
+* Git में **branch या commit switch** करने के लिए इस्तेमाल होता है।
+* Project को किसी पुराने commit की स्थिति में **देखने के लिए** भी useful।
+* Checkout करने पर **HEAD pointer** उस branch/commit पर चला जाता है।
+
+
+## 🔹 Use Cases & Commands
+### 1️⃣ Branch switch करना
+git checkout branch_name
+👉 Example:
+git checkout master
+
+
+### 2️⃣ नया branch बनाना और switch करना
+git checkout -b new_branch
+
+👉 Example:
+git checkout -b bugfix
+
+
+### 3️⃣ किसी पुराने commit पर जाना (detached HEAD mode)
+git checkout <commit-id>
+
+
+👉 Example:
+git checkout 172804c
+
+➡ आपका project अब उस commit जैसा हो जाएगा।
+➡ आप पुराने files देख सकते हो।
+
+⚠️ लेकिन ध्यान रखें:
+
+* यह **detached HEAD mode** है।
+* यहाँ commit किया तो वो किसी branch से जुड़ा नहीं रहेगा (lost हो सकता है)।
+
+IMP:-
+### 4️⃣ Detached HEAD से नया branch बनाना (safe way)
+
+अगर आप पुराने commit से नया काम शुरू करना चाहते हैं:
+git checkout -b new-branch
+
+👉 Example:
+git checkout -b feature-from-commit1
+
+➡ अब आप commit1 से नया branch बनाकर काम कर सकते हैं, और master safe रहेगा।
+
+## 🔹 Important Notes
+* **Branch checkout** → current branch बदल देता है।
+* **Commit checkout** → पुराना commit देखने देता है (detached HEAD)।
+* **Detached HEAD mode** → commits safe नहीं रहते जब तक नया branch न बनाया जाए।
+* हमेशा नया काम पुराने commit से शुरू करना हो → नया branch बनाइए।
+
+## 🔑 Short Recap (1–2 line memory trick)
+
+* `git checkout branch` → branch बदलो
+* `git checkout -b newbranch` → नया branch बनाओ और switch करो
+* `git checkout commit-id` → पुराना commit देखो (detached HEAD)
