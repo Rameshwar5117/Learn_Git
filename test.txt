@@ -9,5 +9,3 @@ git reset HEAD~1
 git reset HEAD~1
 git reset HEAD~1
 git reset HEAD~1
-
-hello
