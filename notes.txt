@@ -154,6 +154,32 @@ Note:-
 यह stash किसी branch से permanent जुड़ा नहीं होता।
 इसलिए आप किसी भी branch में जाकर उसे apply या pop कर सकते हो।
 
+Note:-
+# 1. कोई change करो और stash करो
+git stash -m "first change"
+
+# 2. दूसरा change करो और फिर stash करो
+git stash -m "second change"
+
+# 3. देखो अभी stash list में क्या है
+git stash list
+# Output:
+# stash@{0}: On main: second change
+# stash@{1}: On main: first change
+
+# 4. Latest stash (stash@{0}) वापस लाओ और list से हटा दो
+git stash pop
+# → सिर्फ "second change" वापस आएगा
+
+# 5. फिर stash list देखो
+git stash list
+# Output:
+# stash@{0}: On main: first change
+
+# 6. अब पुराना वाला stash निकालो
+git stash pop stash@{0}
+# → अब "first change" भी वापस आ जाएगा
+
 
 ================================= 3. Basic ✅ conflict और ❌ no conflict ==============================================
 # 📒 Git Merge Notes (With & Without Conflict)
