@@ -325,3 +325,47 @@ git reset --hard HEAD~1
 * **--soft** → Commit हटेगा, changes **staging area + working directory** में रहेंगे।
 * **--mixed (default)** → Commit हटेगा, changes **staging से हट जाएंगे, working directory में रहेंगे।**
 * **--hard** → Commit हटेगा, changes **staging और working directory दोनों से हट जाएंगे।**
+
+
+============================= 5. Revert ==============================================
+
+# 📘 Git Revert Notes
+
+* किसी commit के changes को undo करता है।
+* Commit **delete नहीं होता**, बल्कि एक **नया commit** बनता है जो उस commit को उल्टा कर देता है।
+* History safe रहती है (team work के लिए best)।
+
+## 🔹 Steps
+1. **Commit देखें**
+   git log --oneline
+
+   Example:
+   c3d2f1  add reset concept
+   b2a1e9  add paragraph
+   a1b2c3  add heading
+
+2. **Commit revert करें**
+   git revert c3d2f1
+
+3. **Commit Message** (auto-generate होगा)
+   Revert "add reset concept"
+   This reverts commit c3d2f1...
+   * Save और exit करें
+   * या custom message लिखें
+
+4. **History दोबारा देखें**
+   git log --oneline
+
+   Result:
+   d4e5f6  Revert "add reset concept"
+   c3d2f1  add reset concept
+   b2a1e9  add paragraph
+   a1b2c3  add heading
+
+5. **Remote पर push करें**
+   git push origin master
+
+## 🔹 Key Points
+* **Reset** commit delete करता है → history बदलेगी ❌
+* **Revert** commit को delete नहीं करता → नया commit जोड़ता है ✅
+* Safe option है जब आप team में काम कर रहे हों।
