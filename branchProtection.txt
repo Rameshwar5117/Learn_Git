@@ -1,0 +1,19 @@
+⚠️ **"Your protected branch rules for your branch won't be enforced on this private repository until you move to a GitHub Team or Enterprise organization account."**
+
+### इसका मतलब:
+* Aapne **master branch ke liye protection rule set kiya hai** 👍
+* Lekin kyunki ye repo **private hai**, GitHub Free account par branch protection rules enforce nahi hote.
+* Ye sirf **public repos** me free me milta hai.
+* Private repo ke liye branch protection rules chalayenge to aapko **GitHub Pro / Team / Enterprise** lena padega.
+
+### ✅ Aapke paas 2 solution hain:
+
+1. **Repo ko public kar do**
+   → Tabhi branch protection rules apply ho jayenge free plan me.
+   → Tab direct push master pe block ho jayega.
+
+2. **Paid plan (Pro/Team/Enterprise)** le lo
+   → Tab private repo me bhi rules enforce honge.
+
+👉 Isliye abhi aapke case me, kyunki repo **private** hai, rules "Not enforced" dikh rahe hain.
+Iska matlab: aap **abhi bhi master me direct push kar sakte ho**, chahe rules banaye ho.
