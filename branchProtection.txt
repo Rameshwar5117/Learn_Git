@@ -17,3 +17,68 @@
 
 👉 Isliye abhi aapke case me, kyunki repo **private** hai, rules "Not enforced" dikh rahe hain.
 Iska matlab: aap **abhi bhi master me direct push kar sakte ho**, chahe rules banaye ho.
+
+
+
+
+
+समझ गया 👍
+आप ये पूछ रहे हो कि
+
+👉 **Local machine पर `git merge test` करने से master branch merge हो जाता है, लेकिन GitHub (server) पर push reject हो जाता है।**
+
+---
+
+# 📌 Reason (Step by Step)
+
+## 1. Local Machine पर Merge
+
+* आपने `git checkout master` किया।
+* फिर `git merge test` किया।
+* इससे **local master branch** में `test` branch का code merge हो गया।
+  ✅ यानी आपके local repository के अंदर master update हो गया।
+
+---
+
+## 2. Push करते समय Error आया
+
+जब आपने push किया:
+
+```
+git push origin master
+```
+
+तो error मिला:
+
+```
+remote: error: GH006: Protected branch update failed
+remote: - Changes must be made through a pull request.
+```
+
+👉 इसका मतलब है कि **GitHub ने master branch को protect किया हुआ है**।
+इसलिए कोई भी direct push allow नहीं है।
+
+---
+
+## 3. Local Merge vs Server Protection
+
+* Local repo आपका है → यहाँ कुछ भी कर सकते हो (merge, rebase, amend, delete)।
+* Server (GitHub) पर branch protection rules enforce होते हैं →
+
+  * Direct push नहीं होगा।
+  * Changes **Pull Request (PR)** के जरिए ही master में आएंगे।
+
+---
+
+# 🔑 Final Reason
+
+* Local master पर merge हो सकता है क्योंकि Git local rules follow करता है।
+* लेकिन GitHub पर push reject होता है क्योंकि **Protected Branch Rules** enable हैं (direct push/merge allowed नहीं)।
+* इसलिए server पर changes ले जाने का एक ही तरीका है:
+
+  1. अपनी new branch push करो → `git push origin test`
+  2. PR बनाओ → Review लो → Merge करो master में
+
+---
+
+क्या चाहोगे मैं आपको एक **comparison table** बना दूँ (Local vs GitHub rules) ताकि ये फर्क हमेशा clear रहे?
