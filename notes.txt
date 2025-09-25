@@ -270,3 +270,5 @@ git commit
 
 # 6. Remote repo (GitHub) पर merge result push करो
 git push origin main
+
+console.log("This is Hello World!!")
